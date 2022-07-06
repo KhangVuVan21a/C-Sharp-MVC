@@ -21,10 +21,17 @@ namespace test1.Controllers
         // GET: Student
         public ActionResult Index()
         {
+            TempData["Test"] = "Design by KhangVu!";
+            ViewBag.TestTotal = studentList.ToArray().Length;
+            ViewData["listStudent"] = studentList;
             return View(studentList.OrderBy(i=>i.StudentId).ToList());
         }
         public ActionResult Edit(int Id)
         {
+            String name="";
+            if (TempData.ContainsKey("Test")) {
+                name = TempData["Test"].ToString();
+            }
             var std = studentList.Where(s => s.StudentId == Id).FirstOrDefault();
             return View(std);
         }

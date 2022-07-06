@@ -18,4 +18,5 @@ namespace test1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
+
 }

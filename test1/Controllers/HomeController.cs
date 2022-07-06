@@ -6,10 +6,13 @@ using System.Web.Mvc;
 
 namespace test1.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
+        [HandleError]
         public ActionResult Index()
         {
+            //throw new Exception();
             return View();
         }
 
