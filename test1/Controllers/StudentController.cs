@@ -10,13 +10,13 @@ namespace test1.Controllers
     public class StudentController : Controller
     {
         static IList<Student> studentList = new List<Student>{
-                new Student() { StudentId = 1, StudentName = "John", Age = 18 } ,
-                new Student() { StudentId = 2, StudentName = "Steve",  Age = 21 } ,
-                new Student() { StudentId = 3, StudentName = "Bill",  Age = 25 } ,
-                new Student() { StudentId = 4, StudentName = "Ram" , Age = 20 } ,
-                new Student() { StudentId = 5, StudentName = "Ron" , Age = 31 } ,
-                new Student() { StudentId = 4, StudentName = "Chris" , Age = 17 } ,
-                new Student() { StudentId = 4, StudentName = "Rob" , Age = 19 }
+                new Student() { StudentId = 1, StudentName = "John", Age = 18,Sex = true } ,
+                new Student() { StudentId = 2, StudentName = "Steve",  Age = 21,Sex=false } ,
+                new Student() { StudentId = 3, StudentName = "Bill",  Age = 25 ,Sex=true} ,
+                new Student() { StudentId = 4, StudentName = "Ram" , Age = 20 ,Sex=false} ,
+                new Student() { StudentId = 5, StudentName = "Ron" , Age = 31 ,Sex= false} ,
+                new Student() { StudentId = 4, StudentName = "Chris" , Age = 17 ,Sex=true} ,
+                new Student() { StudentId = 4, StudentName = "Rob" , Age = 19 ,Sex=true}
             };
         // GET: Student
         public ActionResult Index()
@@ -32,9 +32,23 @@ namespace test1.Controllers
         public ActionResult Edit(Student std)
         {
             var student = studentList.Where(s => s.StudentId == std.StudentId).FirstOrDefault();
+            var std1 = studentList.Where(s => s.StudentName == std.StudentName && s.StudentId != std.StudentId).FirstOrDefault();
+            if (std1 != null)
+            {
+                ModelState.AddModelError("name", "Student Name Already Exist!");
+                return View(std);
+            }
             studentList.Remove(student);
             studentList.Add(std);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+        public ActionResult Check()
+        {
+            return View();
         }
 
     }

@@ -162,10 +162,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Contact.cshtml" />
+    <Content Include="Views\Shared\_myLayoutPage1.cshtml" />
+    <Content Include="Views\Student\Check.cshtml" />
+    <Content Include="Views\Shared\_MenuBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

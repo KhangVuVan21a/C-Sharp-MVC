@@ -19,12 +19,32 @@ namespace test1.Controllers
 
             return View();
         }
-
+        [ChildActionOnly]
+        public ActionResult RenderMenu()
+        {
+            return PartialView("_MenuBar");
+        }
+        [HandleError]
         public ActionResult Contact()
         {
+            throw new Exception();
             ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+
+            //Log the error!!
+
+            //Redirect to action
+            //filterContext.Result = RedirectToAction("Error", "Error");
+
+            // OR return specific view
+            filterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Shared/Error.cshtml"
+            };
         }
     }
 }

@@ -11,7 +11,9 @@ namespace test1.Models
         public int StudentId { get; set; }
         [Display(Name = "Name")]
         public String StudentName { get; set; }
+        [Range(10,20,ErrorMessage ="age to ????")]
         public int Age { get; set; }
+        public Boolean Sex { get; set; }
 
     }
 }
