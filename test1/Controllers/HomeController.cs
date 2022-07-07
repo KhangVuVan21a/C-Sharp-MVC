@@ -12,7 +12,7 @@ namespace test1.Controllers
         [HandleError]
         public ActionResult Index()
         {
-            //throw new Exception();
+            throw new Exception();
             return View();
         }
 
@@ -34,7 +34,7 @@ namespace test1.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
-        protected override void OnException(ExceptionContext filterContext)
+        /*protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;
 
@@ -48,6 +48,6 @@ namespace test1.Controllers
             {
                 ViewName = "~/Views/Shared/Error.cshtml"
             };
-        }
+        }*/
     }
 }
